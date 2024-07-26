@@ -1,14 +1,11 @@
-namespace CopilotBusinessCharts.CopilotBusinessCharts;
-
+namespace ML.Lab.CreateChart;
 using Microsoft.Sales.Customer;
-using ML.Lab.CreateChart;
-using System.Visualization;
 
 pageextension 50100 "Customer List - Ext." extends "Customer List"
 {
     actions
     {
-        addafter(Sales)
+        addafter(WordTemplate)
         {
             action(CreateChart)
             {
