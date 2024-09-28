@@ -23,11 +23,6 @@ page 50132 "Business Chart"
         }
     }
 
-    trigger OnOpenPage()
-    begin
-
-    end;
-
     local procedure GetDataType(FieldRefAxis: FieldRef): Option
     var
         ErrorDataTypeLbl: Label 'The data type %1 is not supported.';
@@ -57,7 +52,6 @@ page 50132 "Business Chart"
 
     procedure Load()
     var
-
         RecRef: RecordRef;
         FieldRefYAxis: FieldRef;
         FieldRefXAxis: FieldRef;
