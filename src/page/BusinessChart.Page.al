@@ -23,24 +23,7 @@ page 50132 "Business Chart"
         }
     }
 
-    local procedure GetDataType(FieldRefAxis: FieldRef): Option
-    var
-        ErrorDataTypeLbl: Label 'The data type %1 is not supported.';
-    begin
-        case FieldRefAxis.Type of
-            FieldRefAxis.Type::Integer:
-                exit(TempBuffer."Data Type"::Integer);
-            FieldRefAxis.Type::Decimal:
-                exit(TempBuffer."Data Type"::Decimal);
-            FieldRefAxis.Type::Code, FieldRefAxis.Type::Text:
-                exit(TempBuffer."Data Type"::String);
-            FieldRefAxis.Type::DateTime, FieldRefAxis.Type::Date:
-                exit(TempBuffer."Data Type"::DateTime)
-            else
-                Error(ErrorDataTypeLbl, FieldRefAxis.Type);
-        end;
 
-    end;
 
     procedure SetParameters(pTableId: Integer; pChartType: Enum "Business Chart Type"; pFieldNoXAxis: Integer; pFieldNoYAxis: Integer)
     begin
@@ -85,8 +68,26 @@ page 50132 "Business Chart"
         RecRef.Close();
     end;
 
+    procedure GetDataType(FieldRefAxis: FieldRef): Option
+    begin
+        case FieldRefAxis.Type of
+            FieldRefAxis.Type::Integer:
+                exit(TempBuffer."Data Type"::Integer);
+            FieldRefAxis.Type::Decimal:
+                exit(TempBuffer."Data Type"::Decimal);
+            FieldRefAxis.Type::Code, FieldRefAxis.Type::Text:
+                exit(TempBuffer."Data Type"::String);
+            FieldRefAxis.Type::DateTime, FieldRefAxis.Type::Date:
+                exit(TempBuffer."Data Type"::DateTime)
+            else
+                Error(ErrorDataTypeLbl, FieldRefAxis.Type);
+        end;
+
+    end;
+
     var
         TempBuffer: Record "Business Chart Buffer" temporary;
+        ErrorDataTypeLbl: Label 'The data type %1 is not supported.';
         TableId: Integer;
         ChartType: Enum "Business Chart Type";
         FieldNoYAxis: Integer;
